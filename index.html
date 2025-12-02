@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Rahma Asri | Analytics Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Analytics & Growth Portfolio of Rahma Dewi Yuni Asri – SQL, Tableau, Customer Analytics, Experimentation." />
+
+  <!-- ======================
+       GOOGLE TAG MANAGER / GA4
+       ======================
+       When you're ready:
+       - Paste your GTM <script> code here (inside <head>)
+       - Example:
+         <!-- Google Tag Manager -->
+         <script>/* your GTM script */</script>
+         <!-- End Google Tag Manager -->
+  -->
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-alt: #020617;
+      --card-bg: #020617;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56,189,248,0.15);
+      --text-main: #e5e7eb;
+      --text-soft: #9ca3af;
+      --border-subtle: rgba(148,163,184,0.35);
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 18px 45px rgba(15,23,42,0.85);
+      --shadow-subtle: 0 10px 30px rgba(15,23,42,0.7);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1f2937 0, #020617 55%, #000 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 24px 20px 60px;
+    }
+
+    /* Header / Hero */
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 14px;
+      background: radial-gradient(circle at top, #38bdf8 0, #0369a1 40%, #020617 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-subtle);
+      font-weight: 700;
+      font-size: 18px;
+      color: #e0f2fe;
+    }
+
+    .brand-text-main {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      font-size: 14px;
+    }
+
+    .brand-text-sub {
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+
+    .location-pill {
+      border-radius: var(--radius-pill);
+      padding: 6px 14px;
+      border: 1px solid var(--border-subtle);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-soft);
+      background: rgba(15,23,42,0.7);
+      backdrop-filter: blur(14px);
+    }
+
+    .location-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34,197,94,0.25);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2.1fr) minmax(0, 2fr);
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+
+    @media (max-width: 820px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    .hero-main-card {
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.14), rgba(15,23,42,0.95));
+      border-radius: 26px;
+      padding: 26px 22px;
+      border: 1px solid rgba(148,163,184,0.4);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+      font-size: 12px;
+    }
+
+    .tag-pill {
+      border-radius: var(--radius-pill);
+      padding: 4px 10px;
+      border: 1px solid rgba(148,163,184,0.5);
+      background: rgba(15,23,42,0.7);
+      color: var(--text-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .hero-title {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin: 0 0 6px;
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      color: var(--text-soft);
+      margin-bottom: 18px;
+      max-width: 560px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      border-radius: var(--radius-pill);
+      padding: 9px 18px;
+      font-size: 13px;
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(120deg, #38bdf8, #0ea5e9);
+      color: #0b1120;
+      box-shadow: 0 14px 40px rgba(56,189,248,0.45);
+    }
+
+    .btn-primary span.chevron {
+      font-size: 14px;
+      transform: translateY(1px);
+    }
+
+    .btn-ghost {
+      background: rgba(15,23,42,0.85);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+    }
+
+    .hero-meta {
+      font-size: 12px;
+      color: var(--text-soft);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-chip {
+      padding: 2px 9px;
+      border-radius: 999px;
+      font-size: 11px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.4);
+    }
+
+    .hero-side-card {
+      border-radius: 24px;
+      padding: 18px 18px 20px;
+      background: rgba(15,23,42,0.92);
+      border: 1px solid rgba(30,64,175,0.7);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-side-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at top right, rgba(56,189,248,0.24), transparent 58%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .hero-side-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-side-title {
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(148,163,184,0.9);
+      margin-bottom: 10px;
+    }
+
+    .hero-side-metric {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .hero-side-sub {
+      font-size: 12px;
+      color: var(--text-soft);
+      margin-bottom: 16px;
+    }
+
+    .hero-side-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .hero-side-pill {
+      border-radius: var(--radius-pill);
+      padding: 4px 10px;
+      background: rgba(15,23,42,0.95);
+      border: 1px solid rgba(191,219,254,0.4);
+      font-size: 11px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-side-pill span.dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #38bdf8;
+      box-shadow: 0 0 0 4px rgba(56,189,248,0.25);
+    }
+
+    /* Layout sections */
+
+    .layout-main {
+      display: grid;
+      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.5fr);
+      gap: 22px;
+    }
+
+    @media (max-width: 960px) {
+      .layout-main {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .section {
+      margin-bottom: 22px;
+      border-radius: 20px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.35);
+      box-shadow: var(--shadow-subtle);
+      padding: 18px 18px 18px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 16px;
+      gap: 8px;
+    }
+
+    .section-title {
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: rgba(148,163,184,0.95);
+    }
+
+    .section-subtitle {
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+
+    /* Portfolio cards */
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 14px;
+    }
+
+    .project-card {
+      border-radius: 18px;
+      border: 1px solid rgba(148,163,184,0.4);
+      background: radial-gradient(circle at top, rgba(15,23,42,0.96), #020617 70%);
+      padding: 14px 14px 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-badge {
+      font-size: 11px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 6px;
+    }
+
+    .project-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .project-desc {
+      font-size: 13px;
+      color: var(--text-soft);
+      margin-bottom: 12px;
+    }
+
+    .project-meta {
+      font-size: 11px;
+      color: var(--text-soft);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .project-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .project-meta span.dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(148,163,184,0.9);
+    }
+
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .link-pill {
+      border-radius: var(--radius-pill);
+      padding: 5px 11px;
+      font-size: 12px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.95);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .link-pill svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    /* Skills */
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .pill {
+      padding: 5px 11px;
+      border-radius: var(--radius-pill);
+      font-size: 12px;
+      border: 1px solid rgba(148,163,184,0.55);
+      background: rgba(15,23,42,0.95);
+      color: var(--text-main);
+    }
+
+    /* Experience timeline */
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 13px;
+    }
+
+    .timeline-item {
+      border-radius: 14px;
+      padding: 10px 11px;
+      background: rgba(15,23,42,0.98);
+      border: 1px solid rgba(148,163,184,0.4);
+    }
+
+    .timeline-role {
+      font-weight: 500;
+      margin-bottom: 3px;
+    }
+
+    .timeline-meta {
+      font-size: 12px;
+      color: var(--text-soft);
+      margin-bottom: 6px;
+    }
+
+    .timeline-bullets {
+      margin: 0;
+      padding-left: 16px;
+      color: var(--text-soft);
+    }
+
+    .timeline-bullets li {
+      margin-bottom: 4px;
+    }
+
+    /* Contact */
+
+    .contact-list {
+      font-size: 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      color: var(--text-soft);
+    }
+
+    .contact-list strong {
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    .footer {
+      margin-top: 26px;
+      font-size: 11px;
+      color: var(--text-soft);
+      text-align: center;
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) placeholder:
+       When you add GTM:
+       <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXX"
+       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  -->
+
+  <div class="page">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-badge">R</div>
+        <div>
+          <div class="brand-text-main">Rahma Asri</div>
+          <div class="brand-text-sub">Analytics · Customer Insights · Experimentation</div>
+        </div>
+      </div>
+      <div class="location-pill">
+        <span class="location-dot"></span>
+        <span>Based in Sydney · Australian PR · Open to contract</span>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-main-card">
+        <div class="hero-badge-row">
+          <div class="tag-pill">
+            <span class="tag-dot"></span>
+            <span>Insights & Growth Analyst</span>
+          </div>
+          <div class="tag-pill">
+            <span>SQL · Tableau (Certified) · GCP</span>
+          </div>
+        </div>
+
+        <h1 class="hero-title">Turning messy customer data into clear, commercial decisions.</h1>
+        <p class="hero-subtitle">
+          I’m Rahma, an analytics professional with experience across loyalty, retail and merchant-lending products —
+          using SQL, Tableau and experimentation to drive growth, optimize campaigns, and make customer behaviour
+          understandable for business teams.
+        </p>
+
+        <div class="hero-cta-row">
+          <a class="btn-primary" href="mailto:rahmadewiyuniasri@gmail.com">
+            Contact me for contract roles
+            <span class="chevron">↗</span>
+          </a>
+          <a class="btn-ghost" href="https://public.tableau.com/app/profile/rahma.asri" target="_blank" rel="noopener">
+            View Tableau portfolio
+          </a>
+        </div>
+
+        <div class="hero-meta">
+          <span>
+            <span class="hero-chip">Available immediately · Sydney / Melbourne (remote-friendly)</span>
+          </span>
+          <span>6+ years in analytics & client-facing consulting</span>
+        </div>
+      </div>
+
+      <aside class="hero-side-card">
+        <div class="hero-side-inner">
+          <div class="hero-side-title">Snapshot</div>
+          <div class="hero-side-metric">Analytics Stack</div>
+          <div class="hero-side-sub">Day-to-day tools I’m comfortable shipping work with.</div>
+
+          <div class="hero-side-badges">
+            <div class="hero-side-pill">
+              <span class="dot"></span>
+              SQL · BigQuery
+            </div>
+            <div class="hero-side-pill">
+              <span class="dot"></span>
+              Tableau · Power BI
+            </div>
+            <div class="hero-side-pill">
+              <span class="dot"></span>
+              GA4 · Experimentation
+            </div>
+            <div class="hero-side-pill">
+              <span class="dot"></span>
+              Python (pandas) · Git
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <main class="layout-main">
+      <!-- Left column: portfolio + experience -->
+      <div>
+        <section class="section">
+          <div class="section-header">
+            <div class="section-title">Portfolio</div>
+            <div class="section-subtitle">Selected work from Tableau Public & GitHub</div>
+          </div>
+
+          <div class="project-grid">
+            <!-- Project 1: Tableau dashboard -->
+            <article class="project-card">
+              <div class="project-badge">Tableau · Dashboard</div>
+              <div class="project-title">HR Analytics Dashboard</div>
+              <p class="project-desc">
+                End-to-end dashboard exploring headcount, attrition, and performance — designed to help HR quickly spot
+                risk areas and drill into specific teams.
+              </p>
+              <div class="project-meta">
+                <span>
+                  <span class="dot"></span>
+                  Built in Tableau Public
+                </span>
+                <span>
+                  <span class="dot"></span>
+                  Focus: stakeholder-friendly storytelling
+                </span>
+              </div>
+              <div class="project-links">
+                <a class="link-pill"
+                   href="https://public.tableau.com/app/profile/rahma.asri/viz/HRDashboard_17362189746830/HRSummary"
+                   target="_blank"
+                   rel="noopener">
+                  <!-- external link icon -->
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill="currentColor"
+                          d="M14 3h7v7h-2V6.41l-7.29 7.3-1.42-1.42 7.3-7.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z" />
+                  </svg>
+                  View dashboard
+                </a>
+              </div>
+            </article>
+
+            <!-- Project 2: SQL / GitHub -->
+            <article class="project-card">
+              <div class="project-badge">SQL · Analytics</div>
+              <div class="project-title">Customer Segmentation & RFM Analysis</div>
+              <p class="project-desc">
+                SQL-driven RFM segmentation and cohort logic to identify high-value customers, win-back segments and
+                loyalty tiers, feeding into targeted marketing strategies.
+              </p>
+              <div class="project-meta">
+                <span>
+                  <span class="dot"></span>
+                  SQL · Window functions · RFM logic
+                </span>
+                <span>
+                  <span class="dot"></span>
+                  Suitable for loyalty & e-commerce datasets
+                </span>
+              </div>
+              <div class="project-links">
+                <a class="link-pill"
+                   href="https://github.com/rahuuuma"
+                   target="_blank"
+                   rel="noopener">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill="currentColor"
+                          d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.263.82-.582
+                          0-.288-.01-1.05-.015-2.06-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73
+                          1.205.085 1.84 1.237 1.84 1.237 1.07 1.835 2.807 1.305 3.492.997.108-.776.42-1.305.763-1.605-2.665-.304-5.467-1.332-5.467-5.93
+                          0-1.31.468-2.382 1.236-3.222-.124-.304-.535-1.524.116-3.176 0 0 1.008-.322 3.3 1.23A11.52 11.52 0 0 1 12 5.8
+                          c1.02.005 2.047.138 3.006.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.652.242 2.872.118 3.176.77.84
+                          1.235 1.912 1.235 3.222 0 4.61-2.807 5.624-5.48 5.92.431.372.823 1.102.823 2.222
+                          0 1.606-.015 2.898-.015 3.293 0 .322.216.7.825.58C20.565 21.796 24 17.297 24 12
+                          24 5.37 18.63 0 12 0Z" />
+                  </svg>
+                  View code on GitHub
+                </a>
+              </div>
+            </article>
+
+            <!-- Project 3: placeholder for future GA4 / experiment work -->
+            <article class="project-card">
+              <div class="project-badge">Experiments · GA4 (Coming soon)</div>
+              <div class="project-title">Experiment Design & Funnel Diagnostics</div>
+              <p class="project-desc">
+                Case studies on designing A/B tests, defining success metrics, and diagnosing funnel drop-offs for
+                merchant-lending and loyalty programs.
+              </p>
+              <div class="project-meta">
+                <span>
+                  <span class="dot"></span>
+                  Experiment design · Uplift measurement
+                </span>
+                <span>
+                  <span class="dot"></span>
+                  Will include GA4 & BigQuery examples
+                </span>
+              </div>
+              <div class="project-links">
+                <span class="link-pill">
+                  In progress · check back soon
+                </span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <div class="section-title">Experience</div>
+            <div class="section-subtitle">Roles where I shipped analytics work that changed decisions</div>
+          </div>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-role">Senior Growth Analyst – GoTo Group (Gojek & Tokopedia)</div>
+              <div class="timeline-meta">Merchant-lending products · May 2022 – May 2023 · Jakarta (Remote-ready)</div>
+              <ul class="timeline-bullets">
+                <li>Owned end-to-end growth initiatives: funnel analysis, experiment design, execution, and performance tracking.</li>
+                <li>Used SQL to diagnose drop-offs and campaign under-performance, then translated findings into concrete test ideas.</li>
+                <li>Worked with PMs, engineers, designers and marketing to ship in-app journeys, campaigns and experiments.</li>
+                <li>Built automated SQL-based reporting and experiment readouts for senior leadership.</li>
+              </ul>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-role">Retail & Loyalty Analytics Manager – NielsenIQ</div>
+              <div class="timeline-meta">Customer analytics · Oct 2021 – May 2022 · Jakarta</div>
+              <ul class="timeline-bullets">
+                <li>Evaluated promotion effectiveness using multi-year transactional data, surfacing sustainable promo strategies.</li>
+                <li>Used SQL + Tableau to quantify uplift and communicate findings to both retailers and FMCG principals.</li>
+              </ul>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-role">Retail & Loyalty Analytics Executive / Senior Executive – NielsenIQ</div>
+              <div class="timeline-meta">Aug 2018 – Sep 2021 · Jakarta</div>
+              <ul class="timeline-bullets">
+                <li>Delivered customer-centric analytics (RFM segmentation, lifecycle strategy, store clustering) for a major retailer.</li>
+                <li>Helped drive sales growth and reduce inventory days through data-backed assortment and loyalty decisions.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Right column: skills + about + contact -->
+      <aside>
+        <section class="section">
+          <div class="section-header">
+            <div class="section-title">Skills</div>
+            <div class="section-subtitle">What I’m comfortable using day to day</div>
+          </div>
+
+          <div class="pill-row">
+            <span class="pill">SQL (BigQuery, MySQL)</span>
+            <span class="pill">Tableau (Desktop & Public)</span>
+            <span class="pill">Power BI</span>
+            <span class="pill">Google Data Studio / Looker Studio</span>
+            <span class="pill">Python (pandas, Jupyter)</span>
+            <span class="pill">Experiment design (A/B)</span>
+            <span class="pill">Customer & loyalty analytics</span>
+            <span class="pill">Stakeholder communication</span>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <div class="section-title">Certification</div>
+            <div class="section-subtitle">Formal credentials</div>
+          </div>
+
+          <div class="pill-row">
+            <span class="pill">Tableau Desktop Foundation – Certified</span>
+            <!-- When you get GA4 certified, add: -->
+            <!-- <span class="pill">Google Analytics 4 – Certified</span> -->
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <div class="section-title">About</div>
+            <div class="section-subtitle">Quick background</div>
+          </div>
+
+          <p style="font-size: 13px; color: var(--text-soft); margin-top: 0;">
+            I’ve spent my career sitting between data, marketing and product — translating what’s happening in the
+            numbers into experiments, campaigns and decisions that non-technical teams actually act on.
+          </p>
+          <p style="font-size: 13px; color: var(--text-soft);">
+            I enjoy owning the full loop: pulling data with SQL, shaping the story in Tableau or other BI tools, and
+            then working with teams to test and iterate on what we’ve learned.
+          </p>
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <div class="section-title">Contact</div>
+            <div class="section-subtitle">Let’s work together</div>
+          </div>
+
+          <div class="contact-list">
+            <div><strong>Email:</strong> <a href="mailto:rahmadewiyuniasri@gmail.com">rahmadewiyuniasri@gmail.com</a></div>
+            <div><strong>Location:</strong> Sydney, Australia (Australian Permanent Resident)</div>
+            <div><strong>GitHub:</strong> <a href="https://github.com/rahuuuma" target="_blank" rel="noopener">github.com/rahuuuma</a></div>
+            <div><strong>Tableau Public:</strong> <a href="https://public.tableau.com/app/profile/rahma.asri" target="_blank" rel="noopener">Rahma Asri – Tableau Portfolio</a></div>
+            <!-- You can add LinkedIn here if you want -->
+            <!-- <div><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noopener">your-handle</a></div> -->
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      © <span id="year"></span> Rahma Asri · Built with GitHub Pages
+    </footer>
+  </div>
+
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
